@@ -1,6 +1,6 @@
 var express = require('express')
 var app = express()
-const port = process.env.PORT || 5000;
+const port =  5000;
 const bodyParser = require('body-parser')
 const axios = require('axios')
 const qs = require('qs')
