@@ -2,7 +2,6 @@ var express = require('express')
 var app = express()
 const dotenv = require('dotenv')
 dotenv.config()
-const port = process.env.PORT ||  3000;
 const bodyParser = require('body-parser')
 const axios = require('axios')
 const qs = require('qs')
@@ -10,6 +9,9 @@ var cors = require('cors')
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+const port = process.env.PORT ||  3000;
+
+
 app.get('/api', (req, res) => {
     return res.send({
         error: false,
@@ -53,7 +55,6 @@ app.post('/adddata', (req, res) => {
         return res.status(400).send(err)
     }
 })
-
-app.listen(port, () => {
+app.listen(process.env.PORT ||  3000, () => {
     console.log('Node App is running or port')
 })
