@@ -73,6 +73,10 @@ app.post('/adddata', (req, res) => {
     let { message } = req.body
     console.log('Token :' +token)
     try {
+        if(!message){
+            console.log('empty')
+            return res.status(400).send({message : 'ข้อมุลไม่ครบ'})
+        }
         const url = 'https://notify-api.line.me/api/notify'
         const jsonData = {
             message: message,
