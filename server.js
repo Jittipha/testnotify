@@ -21,6 +21,11 @@ app.get('/api', (req, res) => {
     })
 })
 
+app.get('/notifyredirect', (req, res) => {
+    const {state,code} = req.query
+    console.log(state+code)
+})
+
 
 
 app.post('/adddata', (req, res) => {
