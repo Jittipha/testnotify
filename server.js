@@ -75,7 +75,7 @@ app.post('/adddata', (req, res) => {
             method: 'POST',
             headers: {
                 'content-type': 'application/x-www-form-urlencoded',
-                Authorization: `Bearer ` + accessCode,
+                Authorization: `Bearer ` + token,
             },
             data: qs.stringify(jsonData),
             url,
