@@ -70,13 +70,12 @@ app.get('/notifyredirect', (req, res) => {
 
 
 app.post('/adddata', (req, res) => {
-    let { accessCode } = req.body
-    console.log(accessCode)
+    let { message } = req.body
     console.log('Token :' +token)
     try {
         const url = 'https://notify-api.line.me/api/notify'
         const jsonData = {
-            message: `สวัสดีครับ`,
+            message: message,
         }
         const requestOption = {
             method: 'POST',
