@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const axios = require('axios')
 const qs = require('qs')
 var cors = require('cors')
+const { text } = require('body-parser')
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -70,16 +71,16 @@ app.get('/notifyredirect', (req, res) => {
 
 
 app.post('/adddata', (req, res) => {
-    let { message } = req.body
-    console.log('Token :' +token)
+    let { TEXT } = req.body
+    console.log('Token :' +token+'  Message : '+TEXT)
     try {
-        if(!message){
+        if(!TEXT){
             console.log('empty')
             return res.status(400).send({message : 'ข้อมุลไม่ครบ'})
         }
         const url = 'https://notify-api.line.me/api/notify'
         const jsonData = {
-            message: message,
+            message: TEXT,
         }
         const requestOption = {
             method: 'POST',
