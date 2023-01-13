@@ -9,8 +9,9 @@ var cors = require('cors')
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-const port = process.env.PORT ||  3000;
+const port = process.env.PORT || 3000;
 
+var token;
 
 app.get('/api', (req, res) => {
     return res.send({
@@ -22,8 +23,34 @@ app.get('/api', (req, res) => {
 })
 
 app.get('/notifyredirect', (req, res) => {
-    const {state,code} = req.query
-    console.log(state+code)
+    const { state, code } = req.query
+    console.log('State :' + state + '  Code :' + code)
+
+    const url = 'https://notify-bot.line.me/oauth/token'
+    const jsonData = {
+        grant_type: 'authorization_code',
+        code: code,
+        redirect_uri: 'https://testnotify.up.railway.app/notifyredirect',
+        client_id: 'ECqn7tb6U3tR68F6dSCfeE',
+        client_secret: 'QYYcWgG60MwsnlBtOVUrcf2hsXDScQsFMpuUzsJEtu1',
+    }
+
+    const requestOption = {
+        method: 'POST',
+        headers: { 'content-type': 'application/x-www-form-urlencoded' },
+        data: qs.stringify(jsonData),
+        url,
+    }
+    axios(requestOption)
+        .then(async (lineRes) => {
+            if(lineRes.status === 200){
+                console.log('Auth Success');
+                token = lineRes.data.access_token
+
+            }else{
+                console.log('failed')
+            }
+        })
 })
 
 
@@ -31,6 +58,7 @@ app.get('/notifyredirect', (req, res) => {
 app.post('/adddata', (req, res) => {
     let { accessCode } = req.body
     console.log(accessCode)
+    console.log('Token :' +token)
     try {
         const url = 'https://notify-api.line.me/api/notify'
         const jsonData = {
