@@ -53,5 +53,5 @@ app.post('/adddata', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log('Node App is running or port ' + port)
+    console.log('Node App is running or port')
 })
