@@ -23,6 +23,7 @@ app.get('/api', (req, res) => {
 })
 
 app.get('/notifyredirect', (req, res) => {
+    try{
     const { state, code } = req.query
     console.log('State :' + state + '  Code :' + code)
 
@@ -46,11 +47,17 @@ app.get('/notifyredirect', (req, res) => {
             if(lineRes.status === 200){
                 console.log('Auth Success');
                 token = lineRes.data.access_token
+                return res.status(200)
 
             }else{
                 console.log('failed')
+                return res.status(400)
             }
         })
+    }
+    catch(err){
+        return res.status(404)
+    }
 })
 
 
