@@ -4,10 +4,10 @@ const port =  3000;
 const bodyParser = require('body-parser')
 // const axios = require('axios')
 // const qs = require('qs')
-var cors = require('cors')
-app.use(cors())
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+// var cors = require('cors')
+// app.use(cors())
+// app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/api', (req, res) => {
     return res.send({
         error: false,
