@@ -25,8 +25,12 @@ app.get('/api', (req, res) => {
 app.get('/notifyredirect', (req, res) => {
     try{
     const { state, code } = req.query
+    const {error_description} = req.query
+    if(error_description){
+        return res.status(400).send({message : error_description})
+    }
     if(!state || !code){
-        return res.status(400).send({message : 'ไม่ผ่าน'})
+        return res.status(400).send({message : 'ข้อมุลไม่ครบ'})
     }
     console.log('State :' + state + '  Code :' + code)
 
