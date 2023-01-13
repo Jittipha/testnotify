@@ -31,7 +31,7 @@ app.get('/notifyredirect', (req, res) => {
     const jsonData = {
         grant_type: 'authorization_code',
         code: code,
-        redirect_uri: 'https://testnotify.up.app/notifyredirect',
+        redirect_uri: 'https://testnotify-production.up.railway.app/notifyredirect',
         client_id: 'ECqn7tb6U3tR68F6dSCfeE',
         client_secret: 'QYYcWgG60MwsnlBtOVUrcf2hsXDScQsFMpuUzsJEtu1',
     }
