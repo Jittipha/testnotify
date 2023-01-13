@@ -55,6 +55,6 @@ app.post('/adddata', (req, res) => {
         return res.status(400).send(err)
     }
 })
-app.listen(process.env.PORT ||  3000, () => {
+app.listen(port, () => {
     console.log('Node App is running or port')
 })
