@@ -25,6 +25,9 @@ app.get('/api', (req, res) => {
 app.get('/notifyredirect', (req, res) => {
     try{
     const { state, code } = req.query
+    if(!state || !code){
+        return res.status(400).send({message : 'ไม่ผ่าน'})
+    }
     console.log('State :' + state + '  Code :' + code)
 
     const url = 'https://notify-bot.line.me/oauth/token'
